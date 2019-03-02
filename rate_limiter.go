@@ -10,14 +10,14 @@ type RateLimiter interface {
 	LimitExceeded(commandName string) (bool, error)
 }
 
-func NewFixedTimeWindowRateLimiter(maxRequests int, perPeriod time.Duration, store Store) (*FixedTimeWindowRateLimiter, error) {
+func NewFixedTimeWindowRateLimiter(maxOps int, perPeriod time.Duration, store Store) (*FixedTimeWindowRateLimiter, error) {
 	if perPeriod < 1*time.Second || perPeriod > 1*time.Hour {
 		return nil, errors.New("perPeriod has to be between 1 second and 1 hour")
 	}
 
 	return &FixedTimeWindowRateLimiter{
 		store,
-		maxRequests,
+		maxOps,
 		perPeriod,
 	}, nil
 }
@@ -28,7 +28,7 @@ type FixedTimeWindowRateLimiter struct {
 	perPeriod   time.Duration
 }
 
-func (rt *FixedTimeWindowRateLimiter) LimitExceeded(commandName string) (bool, error) {
+func (rt *FixedTimeWindowRateLimiter) LimitExceeded(opName string) (bool, error) {
 	bucketTimeStamp := 0
 	now := time.Now()
 	if rt.perPeriod < 1*time.Minute {
@@ -37,7 +37,7 @@ func (rt *FixedTimeWindowRateLimiter) LimitExceeded(commandName string) (bool, e
 		bucketTimeStamp = now.Hour()
 	}
 
-	key := fmt.Sprintf("%s_%d", commandName, bucketTimeStamp)
+	key := fmt.Sprintf("%s_%d", opName, bucketTimeStamp)
 	val, err := rt.store.Get(key)
 	if err != nil {
 		return false, errors.Wrapf(err, "failed to get current limit state for key %s", key)
