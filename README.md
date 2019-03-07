@@ -1,7 +1,7 @@
 rate_limiter
 ==========
 
-Rate limiter is cheat and yet efficient way of securing your API against basic attacks or malicious overuse.
+Rate limiter is cheap and yet efficient way of securing your API against basic attacks or malicious overuse.
 Fixed Time Window rate limiter (also known as fixed window counter) is one of many known algorithms. This algo counts a number of operations per given period and returns true when limiter has enough capacity.
 
 
