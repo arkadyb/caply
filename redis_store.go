@@ -12,6 +12,7 @@ func NewRedisStore(redisPool *redis.Pool) *RedisStore {
 	}
 }
 
+// RedisStore implements Store interface for Redis
 type RedisStore struct {
 	redisPool *redis.Pool
 }
