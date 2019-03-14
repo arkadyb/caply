@@ -18,7 +18,7 @@ Use ```ratelimiter.NewFixedTimeWindowRateLimiter``` function to create new rate 
 Where ```store.Store``` is data storage used to hold number of operations for given time window.
 
 ```go
-rl := caply.NewFixedTimeWindowRateLimiter(100, 1*time.Second, myStore) 
+cp := caply.NewCaply(100, 1*time.Second, myStore) 
 ```  
 
 ### Store
@@ -34,7 +34,7 @@ It then checks its defined capacity for given operation and returns true or fals
 Operation name may be for example user IP address or license key.
 
 ```go
-exceeded, err := rl.LimitExceeded("my-key")
+exceeded, err := cp.Exceeded("my-key")
 if exceeded {
 	// no capacity at the moment, try again later
 } else {
