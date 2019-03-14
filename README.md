@@ -41,3 +41,7 @@ if exceeded {
 	// all good, operation can run
 }
 ```  
+
+## License
+ 
+The MIT License (MIT)
