@@ -1,4 +1,4 @@
-package ratelimiter
+package caply
 
 import "time"
 

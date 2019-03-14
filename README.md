@@ -1,7 +1,7 @@
-rate_limiter
+caply
 ==========
 
-Rate limiter is cheap and yet efficient way of securing your API against basic attacks or malicious overuse.
+Caply is rate limiter - cheap and yet efficient way of securing your API against basic attacks or malicious overuse.
 Fixed Time Window rate limiter (also known as fixed window counter) is one of many known algorithms. This algo counts a number of operations per given period and returns true when limiter has enough capacity.
 
 
@@ -9,7 +9,7 @@ How to use
 ----------
 
 ```go
-import "github.com/arkadyb/rate_limiter"
+import "github.com/arkadyb/caply"
 ```
 
 
@@ -18,7 +18,7 @@ Use ```ratelimiter.NewFixedTimeWindowRateLimiter``` function to create new rate 
 Where ```store.Store``` is data storage used to hold number of operations for given time window.
 
 ```go
-rl := ratelimiter.NewFixedTimeWindowRateLimiter(100, 1*time.Second, myStore) 
+rl := caply.NewFixedTimeWindowRateLimiter(100, 1*time.Second, myStore) 
 ```  
 
 ### Store

@@ -1,4 +1,4 @@
-package ratelimiter
+package caply
 
 import (
 	"github.com/gomodule/redigo/redis"
